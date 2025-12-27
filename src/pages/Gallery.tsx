@@ -17,6 +17,7 @@ interface GalleryProps {
 }
 
 const Gallery: React.FC<GalleryProps> = ({ data }) => {
+  const IMAGE_BASE = import.meta.env.BASE_URL + "/images";
   const [currentIndex, setCurrentIndex] = useState(0);
   const items = data.content.sections;
 
@@ -38,7 +39,7 @@ const Gallery: React.FC<GalleryProps> = ({ data }) => {
 
       <div className="relative w-full max-w-5xl h-[60vh] sm:h-[70vh] bg-gray-100 flex items-center justify-center rounded">
         <img
-          src={`/images/${items[currentIndex].image}`}
+          src={`${IMAGE_BASE}/${items[currentIndex].image}`}
           alt={items[currentIndex].description}
           className="w-full h-full object-cover rounded"
         />
@@ -75,7 +76,7 @@ const Gallery: React.FC<GalleryProps> = ({ data }) => {
           {items.map((item, index) => (
             <img
               key={item.id}
-              src={`/images/${item.image}`}
+              src={`${IMAGE_BASE}/${item.image}`}
               alt={item.description}
               className={`w-20 h-20 object-cover rounded cursor-pointer transition transform ${
                 currentIndex === index ? "ring-2 ring-blue-500 scale-105" : ""

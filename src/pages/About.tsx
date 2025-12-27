@@ -19,6 +19,7 @@ interface AboutProps {
 
 const About: React.FC<AboutProps> = ({ data }) => {
   const { title, subtitle, sections } = data.content;
+  const IMAGE_BASE = import.meta.env.BASE_URL + "/images";
 
   return (
     <section className="w-full max-w-7xl mx-auto py-10 flex flex-col gap-20">
@@ -47,7 +48,7 @@ const About: React.FC<AboutProps> = ({ data }) => {
 
             <div className="group relative overflow-hidden rounded-2xl shadow-lg">
               <img
-                src={section.image}
+                src={`${IMAGE_BASE}/${section.image}`}
                 alt={section.title}
                 className="
                   w-full h-80 object-cover

@@ -26,13 +26,13 @@
           "id": "mission",
           "title": "Our Mission",
           "text": "Our mission is to provide accessible and high-quality education to learners worldwide. We aim to foster a culture of curiosity and knowledge sharing, enabling students to achieve their full potential. Our platform combines innovative teaching tools with research-based strategies for effective learning.",
-          "image": "/images/about-1.jpg"
+          "image": "/about-1.jpg"
         },
         {
           "id": "team",
           "title": "Our Team",
           "text": "Our team consists of experienced educators, researchers, and technologists who are passionate about improving learning outcomes. Each member contributes unique expertise to create engaging, informative, and well-structured educational content. Collaboration within our team ensures that our platform continuously evolves and adapts to the needs of learners.",
-          "image": "/images/about-2.png"
+          "image": "/about-2.png"
         }
       ]
     }

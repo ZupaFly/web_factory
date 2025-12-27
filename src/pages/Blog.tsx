@@ -20,7 +20,7 @@ interface BlogProps {
 const Blog: React.FC<BlogProps> = ({ data }) => {
   const [openArticle, setOpenArticle] = useState<Article | null>(null);
 
-  const IMAGE_BASE = "/images";
+  const IMAGE_BASE = import.meta.env.BASE_URL + "/images";
 
   return (
     <div className="w-full flex flex-col items-center gap-8 px-4 mb-10 py-10">

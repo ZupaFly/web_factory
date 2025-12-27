@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-const IMAGE_BASE = "/images";
+const IMAGE_BASE = import.meta.env.BASE_URL + "/images";
 const Home = ({ data }: any) => {
   const { title, subtitle, sections } = data.content;
   const images = data.images || [];

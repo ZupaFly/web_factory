@@ -12,4 +12,6 @@ export default defineConfig({
       },
     }),
   ],
+  base: "/web_factory/",
 })
+
