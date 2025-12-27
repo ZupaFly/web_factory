@@ -50,7 +50,7 @@ const Gallery: React.FC<GalleryProps> = ({ data }) => {
             className="pointer-events-auto bg-blue-600 p-2 rounded-full shadow-lg hover:bg-blue-700 transition cursor-pointer"
           >
             <img
-              src="/images/arrow-left.png"
+              src={`${IMAGE_BASE}/arrow-left.png`}
               alt="Previous"
               className="w-6 h-6"
             />
@@ -60,7 +60,7 @@ const Gallery: React.FC<GalleryProps> = ({ data }) => {
             className="pointer-events-auto bg-blue-600 p-2 rounded-full shadow-lg hover:bg-blue-700 transition cursor-pointer"
           >
             <img
-              src="/images/arrow-right.png"
+              src={`${IMAGE_BASE}/arrow-right.png`}
               alt="Next"
               className="w-6 h-6"
             />
