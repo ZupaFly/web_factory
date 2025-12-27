@@ -1,0 +1,66 @@
+You are generating structured text content for a multi-page educational informational website (whitepage).
+
+IMPORTANT RULES (Google Ads Safe):
+- Informational tone only
+- No promises, guarantees, or calls to action
+- No marketing language
+- No medical, financial, or legal claims
+- Neutral, factual wording
+- No emotional pressure
+- Suitable for Google Ads approval
+
+WEBSITE PARAMETERS:
+- Topic: {{TOPIC}}
+- Language: {{LANGUAGE}}
+- Country / GEO: {{GEO}}
+- Pages: Home, About, Gallery, Blog, Contacts, Privacy Policy, Terms of Use
+
+TASK:
+Generate a single JSON object representing **only the text content** for all pages.
+
+STRUCTURE REQUIREMENTS:
+
+1. TEXT CONTENT
+- For non-Blog pages:
+  - title
+  - subtitle
+  - sections[]:
+      - For "About" page sections:
+          - id
+          - title
+          - text
+          - image (name of the image file, e.g., "/images/about-1.png")
+      - For other non-Blog pages:
+          - heading
+          - paragraph (2–4 sentences, neutral, informational)
+          - optional list[]
+- For "Gallery" page sections:
+  - id
+  - image (name of the image file, e.g., "gallery-1.png")
+  - description (short caption for the image)
+- For Blog page:
+  - sections[] should be an array of articles
+  - Each article must have:
+    - id (unique string)
+    - title
+    - shortDescription (10–15 sentences, neutral, educational)
+    - fullContent (500–600 words, 4–6 paragraphs, neutral, educational)
+    - image (name of the image file that will correspond to the generated illustration)
+- For Contacts, Privacy, Terms pages:
+  - sections[] should have heading and paragraph fields as shown in the example JSON
+
+OUTPUT FORMAT (STRICT):
+Return ONE JSON object with the structure:
+
+{
+  "pages": {
+    "home": { "content": { "title": "...", "subtitle": "...", "sections": [ { "heading": "...", "paragraph": "...", "list": ["..."]? } ] } },
+    "about": { "content": { "title": "...", "subtitle": "...", "sections": [ { "id": "...", "title": "...", "text": "...", "image": "/images/..." }, ... ] } },
+    "gallery": { "content": { "title": "...", "sections": [ { "id": "...", "image": "gallery-1.png", "description": "..." }, ... ] } },
+    "blog": { "content": { "sections": [ { "id": "...", "title": "...", "shortDescription": "...", "fullContent": "...", "image": "..." }, ... ] } },
+    "contacts": { "content": { "title": "...", "subtitle": "...", "sections": [ { "heading": "...", "paragraph": "..." } ] } },
+    "privacy": { "content": { "title": "...", "subtitle": "...", "sections": [ { "heading": "...", "paragraph": "..." } ] } },
+    "terms": { "content": { "title": "...", "subtitle": "...", "sections": [ { "heading": "...", "paragraph": "..." } ] } }
+}
+
+Do not include image URLs. Only generate the textual content and the image filenames (image or imageName) that will later match generated images.
