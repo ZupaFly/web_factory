@@ -13,17 +13,15 @@ const Footer: React.FC = () => {
     { to: "/terms", label: "Terms" },
   ];
 
-  // Разделяем ссылки на колонки по 4 элемента
   const columns: { to: string; label: string }[][] = [];
   for (let i = 0; i < pageLinks.length; i += 4) {
     columns.push(pageLinks.slice(i, i + 4));
   }
 
   return (
-    <footer className="bg-gray-800 text-white w-full py-8 px-4">
-      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between gap-8">
-        {/* Страницы слева */}
-        <div className="flex gap-8">
+    <footer className="bg-gray-800 text-white w-full py-8 px-4 mt-auto">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-8">
+        <div className="flex gap-8 flex-wrap">
           {columns.map((col, idx) => (
             <div key={idx} className="flex flex-col gap-2">
               {col.map((link) => (
@@ -35,7 +33,6 @@ const Footer: React.FC = () => {
           ))}
         </div>
 
-        {/* Контакты справа */}
         <div className="flex flex-col gap-2">
           <h3 className="font-semibold text-lg">Contact</h3>
           <a href="mailto:info@example.com" className="hover:underline">info@example.com</a>
