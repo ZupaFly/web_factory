@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import spainFlag from "../images/spain-flag.jpg";
 
@@ -10,11 +10,15 @@ type Message = {
 
 const ChatBot: React.FC = () => {
   const navigate = useNavigate();
+  const chatContainerRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+
   const [messages, setMessages] = useState<Message[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showOptions, setShowOptions] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [openCountry, setOpenCountry] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -22,7 +26,6 @@ const ChatBot: React.FC = () => {
     country: "España",
     phone: "",
   });
-  const [openCountry, setOpenCountry] = useState(false);
 
   const questions = [
     { q: "¿Es usted ciudadano de España?", options: ["Sí", "No"], failIf: ["No"] },
@@ -54,6 +57,18 @@ const ChatBot: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, [messages, showOptions]);
+
+  useEffect(() => {
+    if (showForm && formRef.current) {
+      formRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [showForm]);
+
   const handleAnswer = (answer: string) => {
     setMessages(prev => [...prev, { text: answer, isUser: true }]);
     setShowOptions(false);
@@ -78,7 +93,7 @@ const ChatBot: React.FC = () => {
     }
   };
 
-  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
@@ -92,7 +107,7 @@ const ChatBot: React.FC = () => {
   return (
     <div className="w-full min-h-screen flex flex-col items-center bg-gray-50">
       <div className="w-full max-w-3xl h-24 bg-gray-100 flex items-center justify-center">
-        <img src={spainFlag} alt="España" className="h-16" />
+        <img src={spainFlag} alt="España"/>
       </div>
 
       <div className="w-full max-w-3xl flex flex-col flex-1 border rounded-lg bg-white shadow-lg mt-4 mb-4">
@@ -109,7 +124,10 @@ const ChatBot: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex-1 p-4 flex flex-col gap-3 overflow-y-auto">
+            <div
+              ref={chatContainerRef}
+              className="flex-1 p-4 flex flex-col gap-3 overflow-y-auto max-h-150"
+            >
               {messages.map((msg, idx) => (
                 <div
                   key={idx}
@@ -140,7 +158,7 @@ const ChatBot: React.FC = () => {
         )}
 
         {showForm && (
-          <form className="p-4 flex flex-col gap-3" onSubmit={handleFormSubmit}>
+          <form ref={formRef} className="p-4 flex flex-col gap-3" onSubmit={handleFormSubmit}>
             <input
               type="text"
               name="firstName"
