@@ -88,7 +88,7 @@ const News: React.FC<NewsProps> = ({ data }) => {
                 >
                   <Link
                     to="/chatbot"
-                    className="bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold px-10 py-4 rounded-full shadow-lg transition w-full max-w-xs md:max-w-sm cursor-pointer"
+                    className="bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold px-10 py-4 rounded-full shadow-lg transition w-full max-w-xs md:max-w-sm cursor-pointer text-center"
                   >
                     Acceder a la plataforma
                   </Link>
