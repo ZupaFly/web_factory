@@ -9,21 +9,12 @@ import Contacts from "./Contacts";
 import Privacy from "./Privacy";
 import Terms from "./Terms";
 import spainData from "../content/spain.json";
-import newsData from "../content/news.json";
 import { CookieBanner } from "../components/CookieBanner";
-import News from "./News";
-import type { NewsJSON } from "../types/news";
-import ChatBot from "./Сhatbot";
 
 export type PageContent = typeof spainData.pages;
 
 const MainPage: React.FC = () => {
   const pages = spainData.pages;
-const news: NewsJSON = newsData as NewsJSON;
-
-  const handleStartQuiz = () => {
-    console.log("Start Quiz clicked");
-  };
 
   return (
     <div className="flex flex-col min-h-screen w-full"> 
@@ -32,11 +23,6 @@ const news: NewsJSON = newsData as NewsJSON;
         <Routes>
           <Route path="/" element={<Home data={pages.home} />} />
           <Route path="/about" element={<About data={pages.about} />} />
-          <Route
-            path="/news"
-            element={<News data={news} onStartQuiz={handleStartQuiz} />}
-          />
-          <Route path="/chatbot" element={<ChatBot />} />
           <Route path="/gallery" element={<Gallery data={pages.gallery} />} />
           <Route path="/blog" element={<Blog data={pages.blog} />} />
           <Route path="/contacts" element={<Contacts data={pages.contacts} />} />
