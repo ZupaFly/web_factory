@@ -10,7 +10,6 @@ const Header: React.FC = () => {
   const siteLinks = [
     { to: "/", label: "Home" },
     { to: "/about", label: "About" },
-    { to: "/news", label: "News" },
     { to: "/gallery", label: "Gallery" },
     { to: "/blog", label: "Blog" },
     { to: "/contacts", label: "Contacts" },
